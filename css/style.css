@@ -1,0 +1,64 @@
+body { 
+    margin: 0;
+    padding: 0;
+    background-color: rgb(247, 242, 242);
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    display: flex;
+    background-color: rgb(121, 199, 250);
+    align-items: center;
+    height: 90px;
+}
+
+#user {
+    margin-top: 30px;
+    height: 100%;
+    padding: 20px;
+}
+
+div#user img{
+    width: 150px;
+    margin-top: -30px;
+    margin-right: 20px;
+    float:left;
+    border-radius: 50%;
+}
+
+div#user b {
+    font-size: 20px;
+}
+
+#formAdd {
+    padding: 20px;
+}
+
+#formAdd input {
+  border: none;
+  outline: 0;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 20px;
+}
+
+#formAdd button {
+  background-color: blue;
+  border: none;
+  outline: 0;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+    background-color: rgb(68, 68, 223);
+}
+
+#lista {
+    margin-top: 100px;
+}
