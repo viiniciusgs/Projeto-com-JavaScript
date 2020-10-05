@@ -42,6 +42,7 @@ function mostrarUsuario() {
             var listTxtItem = document.createElement('a');
             listTxtItem.setAttribute('href', repositorio.html_url)
             listTxtItem.appendChild(document.createTextNode(repositorio.name));
+            listItem.setAttribute('class', 'list-group-item');
             listItem.appendChild(listTxtItem);
             listElement.appendChild(listItem);
         }
