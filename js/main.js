@@ -2,15 +2,7 @@ formElement = document.querySelector('#searchForm');
 inputElement = document.querySelector('#txtUser');
 divUserImageElement = document.querySelector('#userImage');
 divUserElement = document.querySelector('#user');
-rightElement = document.querySelector('#rightSide')
-
-/* window.onload = function() {
-    if(localStorage. != undefined){
-        arrayClubes = JSON.parse(localStorage.Clubes);
-        
-        lançarClubesNaTabela();
-    }        
-}  */
+rightElement = document.querySelector('#rightSide');
 
 formElement.onsubmit = function(event) {
     event.preventDefault();
@@ -18,43 +10,44 @@ formElement.onsubmit = function(event) {
     mostrarUsuario();
 }
 
-function mostrarUsuario() {
+async function mostrarUsuario() {
     var username = inputElement.value;
     
-    if(username === '') {    
+    if(!username) {    
         alert('Digite um usuário'); 
         inputElement.value = '';
         return; 
     }
 
-    axios.get(`https://api.github.com/users/${username}`)
-    .then(function(response) {
-        getUserData(response);
-    })
-    .catch(function(error) {
+    try {
+        const usuario = await axios.get(`https://api.github.com/users/${username}`);
+        getUserData(usuario);
+    } catch (error) {
         alert('Digite um usuário válido');
         inputElement.value = '';
         divUserImageElement.innerHTML = '';
         divUserElement.innerHTML = '';
         listElement.innerHTML = '';
         return;
-    });
+    }
 
-    axios.get(`https://api.github.com/users/${username}/repos`)
-    .then(function(response) {
+    try {
+        const repositorios = await axios.get(`https://api.github.com/users/${username}/repos`)
         rightElement.innerHTML = '<h2>Repositórios</h2>';
         rightElement.innerHTML += '<div id="lista"></div>';
         listElement = document.querySelector('#lista');
-        for(repositorio of response.data) {
+        for(repositorio of repositorios.data) {
             var listItem = document.createElement('div');
             var listTxtItem = document.createElement('a');
-            listTxtItem.setAttribute('href', repositorio.html_url)
+            listTxtItem.setAttribute('href', repositorio.html_url);
             listTxtItem.appendChild(document.createTextNode(repositorio.name));
             listItem.setAttribute('class', 'list-group-item');
             listItem.appendChild(listTxtItem);
             listElement.appendChild(listItem);
         }
-    })
+    } catch (error) {
+        alert(error);
+    }
 }
 
 function getUserData(response) {
