@@ -79,16 +79,13 @@ header img {
 }
 
 #userImage img {
-    width: 100%;
+    width: clamp(3rem, 17vw, 17rem);
     border-radius: 50%;
     margin-top: -34px;
 }
 
 #user {
     margin-top: 16px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .leftSide h1 {
@@ -150,4 +147,51 @@ header img {
 
 #lista .list-group-item a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    #searchForm {
+        padding-left: 10px;
+    }
+
+    #searchForm input {
+        width: 100%;
+    }
+
+    .container {
+        padding: 0 16px 0 16px;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .main {
+        flex-direction: column;
+    }
+
+    .leftSide {
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: initial;
+        padding: 8px 0 0 0;
+    }
+
+    #userImage img {
+        margin-top: 0;
+    }
+
+    #user {
+        margin-top: 0;
+        padding: 0 0 0 16px;
+    }
+
+    .leftSide p {
+        display: none;
+    }
 }
